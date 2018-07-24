@@ -12,8 +12,9 @@
 """
 
 import json
-from typing import Dict
 import logging
+from typing import Dict
+
 import requests
 
 logger = logging.getLogger(__name__)
@@ -40,6 +41,7 @@ class GroupRobot(object):
         payload = {'msgtype': 'text', 'text': {'content': text}}
         response = self.send(payload)
         return response
+
 
 class App(object):
 

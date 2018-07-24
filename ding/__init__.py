@@ -1,7 +1,7 @@
 # encoding: utf-8
 """
-@author: zhenpeng deng
-@contact: zhenpeng_deng@shannonai.com
+@author: monitor1379
+@contact: yy4f5da2@hotmail.com
 
 @version: 1.0
 @file: __init__.py.py
