@@ -10,8 +10,8 @@
 这一行开始写关于本文件的说明与解释
 """
 
-
 import logging
+
 
 def setup_ding_logger():
     logger = logging.getLogger(__name__)
@@ -27,10 +27,7 @@ def setup_ding_logger():
     logger.addHandler(console)
     return logger
 
+
 setup_ding_logger()
 
-
-
 from .basic import GroupRobot, Dingtalk, App
-
-

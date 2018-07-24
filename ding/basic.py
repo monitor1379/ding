@@ -34,12 +34,9 @@ class GroupRobot(object):
         self.robot_access_token = robot_access_token
         self.url = URL_GROUP_ROBOT_SEND_MESSAGE.format(access_token=robot_access_token)
 
-    def send(self, payload: Dict):
-        return requests.post(url=self.url, data=json.dumps(payload), headers=HEADERS)
-
     def send_text(self, text):
         payload = {'msgtype': 'text', 'text': {'content': text}}
-        response = self.send(payload)
+        response = requests.post(url=self.url, data=json.dumps(payload), headers=HEADERS)
         return response
 
 
@@ -48,22 +45,18 @@ class App(object):
     def __init__(self, agent_id: int):
         self.agent_id = agent_id
 
-    def send(self, url: str, payload: Dict):
-        return requests.post(url=url, data=json.dumps(payload), headers=HEADERS)
-
     def send_text(self, access_token, userid_list, text):
+        msg = {'msgtype': 'text', 'text': text}
+        return self.send(access_token, userid_list, msg)
+
+    def send(self, access_token, userid_list, msg: Dict):
         url = URL_CORP_CONVERSATION_ASYN_SEND_MESSAGE.format(access_token=access_token)
         payload = {
             'agent_id': self.agent_id,
             'userid_list': userid_list,
-            'msg': {
-                'msgtype': 'text',
-                'text': {
-                    'content': text
-                }
-            }
+            'msg': msg
         }
-        return self.send(url, payload)
+        return requests.post(url=url, data=json.dumps(payload), headers=HEADERS)
 
 
 class Dingtalk(object):
