@@ -46,7 +46,7 @@ class App(object):
         self.agent_id = agent_id
 
     def send_text(self, access_token, userid_list, text):
-        msg = {'msgtype': 'text', 'text': text}
+        msg = {'msgtype': 'text', 'text': {'content': text}}
         return self.send(access_token, userid_list, msg)
 
     def send(self, access_token, userid_list, msg: Dict):
